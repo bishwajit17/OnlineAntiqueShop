@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+    font-family: 'Montserrat',sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    
+}
+html{
+	scroll-behavior: smooth;
+}
+.showingMessage{
+    font-size: 20px;
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    align-items: center;
+}
+
+.headerLogo {
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+    /* padding: 24px; */
+}
+.headerLogo a{
+    align-items: center;
+    /* justify-content: center; */
+    color:black;
+}
+.navLogo{
+    display: none;
+}
+.headerLogo a:hover{
+    color:rgb(48, 71, 121);
+}
+.closebtn{
+    display: none;
+}
+#heading{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(172, 172, 170);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+.headerLogo {
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+    font-size: 20px;
+    padding: 24px;
+    
+}
+.headerLogo a{
+    color: #284164;
+}
+
+.navAll{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+
+.navbar a{
+    color: black;
+    padding: 49px 25px;
+}
+
+.navbar  a:hover{
+    color:rgb(48, 71, 121);
+}
+
+.logAndRegisterButton{
+    padding: 35px 10px;
+}
+
+.logAndRegisterButton button{
+    margin: 0px 10px;
+}
+.logAndRegisterButton a{
+    font-size: 20px;
+    color: black;
+    padding:0px 10px ;
+}
+.logAndRegisterButton a:hover{
+    color:rgb(48, 71, 121);
+}
+
+@media screen and (max-width: 1050px){
+    .navLogo{
+        display: block;
+        padding: 30px 10px;
+
+    }
+    .navAll{
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+    }
+    
+    .sidenav {
+        height: 100%;
+        width: 0px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        /* transition: 0.5s; */
+        padding-top: 60px;
+    }
+      
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        /* transition: 0.3s;/ */
+    }
+      
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+      
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+      /* .navLogo{
+        display: none;
+      }
+       */
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+}
+
+@media screen and (max-width: 450px){
+  .headerLogo{
+    padding: 10px 0px;
+    font-size: 15px;
+  }  
+  .logAndRegisterButton{
+    margin: 0px;
+    padding: 35px 0px;
+  }
+  .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 25%;
+}
+}
+
+.imageAnique{
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.indexBody{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-image: url(./antique.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    justify-content: center;
+}
+/* .images{
+    height: 20%;
+    width: 100%;
+} */
+.imageSection{
+    padding-top: 300px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+.imageSection h1{
+    font-size: 40px;
+
+}
+.imageSection p{
+    padding-top: 10px;
+    font-size: 40px;
+    
+}
+.contactSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(211, 208, 208);
+    width: 100%;
+    height: 600px;
+    padding-top: 50px;
+    line-height: 30px;
+    font-family: monospace;
+}
+.contactSection h1{
+    font-size: 30px;
+}
+.seccontactSection p a:hover{
+    text-decoration: underline;
+}
+footer{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(22, 22, 22);
+    width: 100%;
+    height: 200px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    line-height: 25px;
+}
+footer p a{
+    color: white;
+
+}
+footer a i{
+    font-size: 30px;
+    padding: 15px;
+}
+
+footer p{
+    text-align: center;
+}
+footer p a:hover{
+    text-decoration: underline;
+}
+.card{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 25%;
+    }
+.card-body{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    padding: 10px;
+    margin: 20px;
+    /* width: 80%; */
+    /* width: 25%; */
+    /* width: 20%; */
+}
+/* .card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 25%;
+
+}
+.card-body{
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+    padding: 10px;
+    margin: 20px;
+    /* width: 25%; */
+    /* width: 20%; */
+@media screen and (max-width: 580px){
+    .card{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        /* flex: 25%; */
+        }
+    .card-body{
+        display: flex;
+        flex-direction: column;
+        border-style: solid;
+        padding: 10px;
+        margin: 20px;
+        width: 80%;
+        /* width: 25%; */
+        /* width: 20%; */
+    }
+    .buyButton{
+        display: flex;
+        flex-direction: column;
+    }
+}
+.card-body p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    padding: 5px;
+}
+/* .card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 25%;
+    width: 25%;
+}
+.card-body{
+     display: flex; 
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    
+}
+.card-body p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    padding: 5px;
+} */
+.buyButton{
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.buyButton button{
+    background-color: rgba(56, 30, 45, 0.448);
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.buyButton button a{
+    font-size: 15px;
+    color: black;
+}
+.buyButton button:hover{
+    color: rgb(59, 129, 173);
+}
+.buyButton input{
+    background-color: rgba(56, 30, 45, 0.448);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: black;
+}
+.buyButton input:hover{
+    color: rgb(238, 69, 27);
+}

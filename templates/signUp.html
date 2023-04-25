@@ -1,0 +1,131 @@
+<!-- Name :- Bishwajit Sonar
+Student Id: - 21063833 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'regForm.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Sign Up, Antiques</title>
+  </head>
+  <body>
+    <p class="showingMessage" style="color: red ">{{error}}</p>
+    <!-- <p style="color: red;"> {{error}} </p> -->
+    <div class="wrapper">
+      <div class="form-left">
+        <h2 class="text-uppercase"><a href="{{url_for('index')}}">Welcome To Antiques Shop</a></h2>
+        <p>
+            To the light of day the antiques are ever-new,
+            it touches them the same now as it did at their birth.
+        </p>
+        <div class="form-field">
+          <a href="{{url_for('signIn')}}"
+            ><input type="submit" class="account" value="Have an Account?"
+          /></a>
+        </div>
+        <div class="form-field">
+          <a href="{{url_for('index')}}"
+            ><input type="submit" class="account" value="Back To Home"
+          /></a>
+        </div>
+      </div>
+      <form action="/register" method="POST" class="form-right"> 
+        <h2 class="text-uppercase">Registration form</h2>
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <label>First Name</label>
+            <input
+              type="text"
+              name="firstname"
+              id="first_name"
+              class="input-field"
+              value="{{request.form.firstname}}"
+              required
+            />
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label>Last Name</label>
+            <input
+              type="text"
+              name="lastname"
+              id="last_name"
+              class="input-field"
+              value="{{request.form.lastname}}"
+              required
+            />
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label>User Name</label>
+            <input
+              type="text"
+              name="username"
+              id="last_name"
+              class="input-field"
+              value="{{request.form.username}}"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Your Email</label>
+          <input
+            type="email"
+            class="input-field"
+            name="email"
+            value="{{request.form.email}}"
+            required
+          />
+        </div>
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              id="pwd"
+              class="input-field"
+              value="{{request.form.password}}"
+              required
+            />
+          </div>
+          <div class="col-sm-6 mb-3">
+            <label>Current Password</label>
+            <input
+              type="password"
+              name="password"
+              value="{{request.form.password}}"
+              id="cpwd"
+              class="input-field"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="option"
+            >I agree to the <a href="{{url_for('termAndCondition')}}"  target="_blank">Terms and Conditions</a>
+            <input type="checkbox" checked />
+            <span class="checkmark" required></span>
+          </label>
+        </div>
+        <div class="form-field">
+          <a href="">
+            <input
+              type="submit"
+              value="Register"
+              class="register"
+              name="register"
+            />
+          </a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

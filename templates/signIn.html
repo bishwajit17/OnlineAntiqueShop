@@ -1,0 +1,59 @@
+<!-- Name :- Bishwajit Sonar
+Student Id: - 21063833 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'signIn.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+    <title>SignIn, Antiques</title>
+</head>
+
+<body>
+
+    <section class="side">
+        <p class="showingMessage" style="color: red ">{{error}}</p>
+        <p class="showingMessage" style="color: green ">{{message}}</p>
+        <!-- <p style="color: red;"> {{message}} </p> -->
+        <h1> <a href="{{url_for('index')}}">Welcome To Antiques Shop</a></h1>
+        <div class="separator"></div>
+        <p>To the light of day the antiques are ever-new, <br> it touches them the same now as it did at their birth.
+        </p>
+        <p>If not having account ? <br><button class="submit"><a href="{{url_for('signUp')}}">SignUp</a></button></p>
+    </section>
+    <section class="main">
+        <div class="login-container">
+            <p class="title"><a href="{{url_for('index')}}">The Antiques Shop</a> </p>
+            <div class="separator"></div>
+            <p class="welcome-message">Please, provide login credential to proceed and have access to all our services
+            </p>
+
+            <form action="/login" class="login-form" method="POST">
+                <div class="form-control">
+                    <input type="text" name="username" value="{{request.form.username}}" placeholder="User Name"
+                        required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-control">
+                    <input type="password" name="password" placeholder="Password" value="{{request.form.password}}"
+                        required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <!-- <button class="submit"><a href="index.html">Login</a></button> -->
+                <button class="submit"><a>SignIn</a></button>
+                <p class="signUpHidden">If not having account ? <br><button class="submit"><a href="{{url_for('signUp')}}">SignUp</a></button></p>
+                <button class="submit"><a href="{{url_for('forgetPasswordForm')}}">Forget Password</a></button>
+            </form>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!-- Name :- Bishwajit Sonar
+Student Id: - 21063833 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = '404.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <title>Page Not Found</title>
+</head>
+<body>
+    <div class="error-page">
+        <div class="content">
+            <h1>404</h1>
+            <h4>Opps! Page Not found</h4>
+            <p>Sorry, The page you are looking for doesn't exist. If you think something is broken, report a problem.</p>
+            <div class="btns">
+                <a href="{{url_for('login')}}">Return LoginPage</a>
+                <a href="{{url_for('index')}}">report problem</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

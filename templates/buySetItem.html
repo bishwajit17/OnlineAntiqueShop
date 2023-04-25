@@ -1,0 +1,165 @@
+<!-- Name :- Bishwajit Sonar
+Student Id: - 21063833 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'addItems.css') }}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+  <script src="https://kit.fontawesome.com/651c4914c4.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@300&display=swap"
+    rel="stylesheet" />
+  <title>The Antiques Shop</title>
+</head>
+
+<body>
+  <p class="showingMessage" style="color: green ">{{message}}</p>
+  <p class="showingMessage" style="color: rgb(244, 49, 6) ">{{error}}</p>
+  <header id="heading">
+    <span class="navLogo" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <div class="headerLogo">
+      <a href="{{url_for('main')}}">
+        <h1><span>the</span>Antique
+        </h1>
+      </a>
+    </div>
+    <div class="navbar">
+      <div id="mySidenav" class="sidenav">
+        <nav class="navAll">
+          {% if session['usertype'] == 'Standard' %}
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#top"><i class="fa fa-fw fa-home"></i>Home</a>
+          <a href="#contact"><i class="fa fa-fw fa-envelope"></i>Contacts</a>
+          <a href="{{url_for('main')}}">IndividualItems</a>
+          <a href="{{url_for('setItemAfterLogin')}}">SetsItems</a>
+          <a href="{{url_for('soldItemUser')}}">BuyItems</a>
+          {% else %}
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="{{url_for('main')}}">IndividualItems</a>
+          <a href="{{url_for('setItemAfterLogin')}}">SetsItems</a>
+          <a href="{{url_for('addNewItem')}}">AddItem</a>
+          <a href="{{url_for('addNewSetsItem')}}">AddSetItem</a>
+          <a href="{{url_for('soldItemUser')}}">SoldHistory</a>
+          {% endif %}
+        </nav>
+      </div>
+    </div>
+    <div class="logAndRegisterButton">
+      <button class="register">
+        <a href="{{url_for('logout')}}">LogOut </a>
+      </button>
+    </div>
+  </header>
+  <div class="wrapper" >
+    <form class="form-right">
+      <h2 class="text-uppercase">Antique Details</h2>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <label>Item Number</label>
+          <p>{{data[0]}}</p>
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+          <label>Description</label>
+          <p>{{data[1]}}</p>
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+          <label>Price</label>
+          <p>£ {{data[2]}}</p>
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+            <label>Items Number</label>
+            <p>
+                {% for x in items %}
+                <span style="margin: 0px 10px;"> {{x}}, </span>
+                {% endfor %}
+            </p>
+          </div>
+          <br>
+      </div>
+      <br>
+    </form>
+    <form action="/buySetItemForm" method="POST" class="form-right">
+      <h2 class="text-uppercase">Enter your payment details</h2>
+      <div class="row">
+        <div class="col-sm-6 mb-3">
+          <input type="text" name="name" id="itemNo" class="input-field" placeholder="Card Holder Name" min="16"
+            max="16" required />
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+          <input type="text" name="cardNumber" id="itemNo" class="input-field" placeholder="Card Number" min="16"
+            max="16" required />
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+          <input type="text" name="expDate" id="description" class="input-field" placeholder="MM/YY" required />
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+          <input type="text" name="cvv" id="price" class="input-field" placeholder="CVV" required />
+        </div>
+        <br>
+        <div class="col-sm-6 mb-3">
+          <input type="text" name="address" id="price" class="input-field" placeholder="Address" required />
+        </div>
+      </div>
+      <br>
+      <div class="form-field" style="display: flex; flex-direction: row; justify-content: center;">
+        <a href="">
+          <input type="hidden" name="setNumber" id="price" value="{{data[0]}}" required />
+          <input type="hidden" name="setName" id="price" value="{{data[1]}}" required />
+          <input type="hidden" name="setPrice" id="price" value="{{data[2]}}" required />
+          <!-- <input type="hidden" name="shopType" value="{{data[3]}}" /> -->
+          {% for x in items %}
+          <input type="hidden" name="itemsNumber" value="{{x}}" />
+          {% endfor %}
+          
+          <input type="submit" value="Submit" class="register" name="register" />
+        </a>
+      </div>
+    </form>
+  </div>
+  <section id="contact" class="contactSection">
+    <h1>
+      THE ANTIQUES SHOP<br />
+      NEPAL
+    </h1>
+    <p>_____________</p>
+    <p>Mustang Dhaulagiri, Provision 5 <br />Bristol</p>
+    <p>Phone:- <a href="#">9898989898</a></p>
+    <p>Email: <a href="www.gmail.com">theantiqueshop@hotel@gmail.com</a></p>
+    <p>FaceBook: <a href="www.facebook.com">TheAntiqueShop</a></p>
+  </section>
+  <footer>
+    <div class="media">
+      <a href="www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="www.gmail.com" target="_blank"><i class="fas fa-mail-bulk"></i></a>
+      <a href="https://www.google.com/maps/place/Shree+Muktinath+Temple,+Muktinath-Chumig+Gyatsa+Pilgrimage+Site,+Muktinath+33100,+Nepal/@28.8166048,83.8714288,18z/data=!4m2!3m1!1s0x39be1420f935fa2f:0xb6f4363b17b0a97f"
+        target="_blank"><i class="fas fa-search-location"></i></a>
+      <a href="www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy 2022 THE ANTIQUE SHOP, NEPAL</p>
+    <p>
+      <a href="{{url_for('privacyAndPolicy')}}">Privacy Policy</a>
+      | Designed and Developed By Bishu
+    </p>
+  </footer>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    new MultiSelectTag('countries')
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+</body>
+
+</html>

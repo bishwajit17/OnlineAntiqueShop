@@ -1,0 +1,30 @@
+<!-- Name :- Bishwajit Sonar
+Student Id: - 21063833 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '401.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <title>Invalid Details</title>
+</head>
+<body>
+    <p class="showingMessage" style="color: red ">{{error}}</p>
+    <div class="error-page">
+        <div class="content">
+            <h1>401</h1>
+            <h4>Opps! Unauthorised access attempt</h4>
+            <p>Sorry, Your username and password are incorrect. Please used correct one</p>
+            <div class="btns">
+                <a href="{{url_for('signIn')}}">Return LoginPage</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

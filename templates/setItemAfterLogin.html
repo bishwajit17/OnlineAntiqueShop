@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script
+      src="https://kit.fontawesome.com/651c4914c4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'index.css') }}"
+    />
+    <title>The Antiques Shop</title>
+  </head>
+
+  <body>
+    <p class="showingMessage" style="color: green">{{message}}</p>
+    <p class="showingMessage" style="color: red">{{error}}</p>
+    <header id="heading">
+      <span
+        class="navLogo"
+        style="font-size: 30px; cursor: pointer"
+        onclick="openNav()"
+        >&#9776;</span
+      >
+      <div class="headerLogo">
+        <a href="{{url_for('main')}}">
+          <h1><span>the</span>Antique</h1>
+        </a>
+      </div>
+      <div class="navbar">
+        <div id="mySidenav" class="sidenav">
+          <nav class="navAll">
+            {% if session['usertype'] == 'Standard' %}
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+              >&times;</a
+            >
+            <a href="#top"><i class="fa fa-fw fa-home"></i>Home</a>
+            <a href="#contact"><i class="fa fa-fw fa-envelope"></i>Contacts</a>
+            <a href="{{url_for('main')}}">IndividualItems</a>
+            <a href="{{url_for('setItemAfterLogin')}}">SetsItems</a>
+            <a href="{{url_for('soldItemUser')}}">BuyItems</a>
+            {% else %}
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+              >&times;</a
+            >
+            <a href="{{url_for('main')}}">IndividualItems</a>
+            <a href="{{url_for('setItemAfterLogin')}}">SetsItems</a>
+            <a href="{{url_for('addNewItem')}}">AddItem</a>
+            <a href="{{url_for('addNewSetsItem')}}">AddSetItem</a>
+            <a href="{{url_for('soldItemUser')}}">SoldHistory</a>
+            {% endif %}
+          </nav>
+        </div>
+      </div>
+      <div class="logAndRegisterButton">
+        <button class="register">
+          <a href="{{url_for('logout')}}">LogOut </a>
+        </button>
+      </div>
+    </header>
+    <div >
+      <form action="/searchSetItem" method="post">
+        <div class="card" style="display: flex; flex-direction: row; margin: 20px 0px ;">
+          <input type="text" name="searchItem" placeholder="Search Items..." style="text-align: center; padding: 5px 20px; font-size: 20px; margin: 0px 10px;">
+          <button class="fas fa-search" style="font-size: 20px; padding: 10px;"></button>
+        </div>
+      </form>
+    </div>
+    <div class="card">
+      {% for row in rows %}
+      <div class="card-body">
+        <p class="card-title">
+          <b>{{row[0]}}</b>
+        </p>
+        <!-- <img src="./static/antique.jpeg" alt=""> -->
+        <p class="card-text">{{row[1]}}</p>
+        <p class="text-primary">
+          <b>Price: £ {{row[2]}}</b>
+        </p>
+        <p>
+          <b>Items: </b>
+          {% for s in sets %} {% if (row[0] == s[0])%}
+          <span>{{s[1]}},</span>
+          {% endif %} {% endfor %}
+        </p>
+        <div class="buyButton"  style="display: flex; flex-direction: row; justify-content: center;" >
+          {% if session['usertype'] == 'Standard' %}
+          <form action="/buySetItem" method="post">
+            <input type="hidden" name="username" value="{{session['username']}}" />
+            <input type="hidden" name="setNumber" value="{{row[0]}}" />
+            {% for s in sets %} {% if (row[0] == s[0])%}
+            <input type="hidden" name="itemsNumber" value="{{s[1]}}" />
+            {% endif %} {% endfor %}
+            <input type="hidden" name="setName" value="{{row[1]}}" />
+            <input type="hidden" name="setPrice" value="{{row[2]}}" />
+            <button type="submit"><b>Buy</b></button>
+          </form>
+          {% else %}
+          <form action="/updateSet" method="post">
+            <input type="hidden" name="setNumber" value="{{row[0]}}" />
+            {% for s in sets %} {% if (row[0] == s[0])%}
+            <input type="hidden" name="itemsNumber" value="{{s[1]}}" />
+            {% endif %} {% endfor %}
+            <input type="hidden" name="setName" value="{{row[1]}}" />
+            <input type="hidden" name="setPrice" value="{{row[2]}}" />
+            <button type="submit"><b>Update</b></button>
+          </form>
+          <button onclick="confirmDelete({{row[0]}})">Delete Item</button>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <section id="contact" class="contactSection">
+      <h1>
+        THE ANTIQUES SHOP<br />
+        NEPAL
+      </h1>
+      <p>_____________</p>
+      <p>Mustang Dhaulagiri, Provision 5 <br />Bristol</p>
+      <p>Phone:- <a href="#">9898989898</a></p>
+      <p>Email: <a href="www.gmail.com">theantiqueshop@hotel@gmail.com</a></p>
+      <p>FaceBook: <a href="www.facebook.com">TheAntiqueShop</a></p>
+    </section>
+    <footer>
+      <div class="media">
+        <a href="www.facebook.com" target="_blank"
+          ><i class="fab fa-facebook"></i
+        ></a>
+        <a href="www.gmail.com" target="_blank"
+          ><i class="fas fa-mail-bulk"></i
+        ></a>
+        <a
+          href="https://www.google.com/maps/place/Shree+Muktinath+Temple,+Muktinath-Chumig+Gyatsa+Pilgrimage+Site,+Muktinath+33100,+Nepal/@28.8166048,83.8714288,18z/data=!4m2!3m1!1s0x39be1420f935fa2f:0xb6f4363b17b0a97f"
+          target="_blank"
+          ><i class="fas fa-search-location"></i
+        ></a>
+        <a href="www.instagram.com" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+      <p>&copy 2022 THE ANTIQUE SHOP, NEPAL</p>
+      <p>
+        <a href="{{url_for('privacyAndPolicy')}}">Privacy Policy</a>
+        | Designed and Developed By Bishu
+      </p>
+    </footer>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+      function confirmDelete(itemId) {
+        if (confirm("Are you sure you want to delete "+ itemId +" item?")) {
+          deleteItem(itemId);
+        }
+      }
+      function deleteItem(itemId) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            // Update the page to reflect the deletion
+            // ...
+          }
+        };
+        xhr.open("POST", "/delete_itemSet", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("id=" + encodeURIComponent(itemId));
+      }
+    </script>
+  </body>
+</html>
